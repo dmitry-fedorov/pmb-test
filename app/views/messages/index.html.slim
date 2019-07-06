@@ -1,5 +1,6 @@
-.board-title
+.messages-board-title
   h1 align="center" 
     = t('board_title')
-.board
-  = render(@messages)
+.messages-board
+  .medium-6.columns
+    = render(@messages)
