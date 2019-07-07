@@ -2,5 +2,9 @@
   h1 align="center" 
     = t('board_title')
 .messages-board
-  .medium-6.columns
+  .medium-6.columns (data-behavior='messages')
+    .message-item
+      = render('form')
+      = render('new_item')
+
     = render(@messages)

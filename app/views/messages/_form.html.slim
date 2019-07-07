@@ -1,0 +1,10 @@
+.message-body-form
+  = form_with(model: @message, remote: true) do |f|
+    .message-form-input
+      = f.text_area :body, required: true
+        
+    .message-form-cancel
+      = link_to 'Cancel', '#', data: { behavior: 'cancel_button' }, remote: true
+ 
+    .message-form-submit
+      = f.submit
