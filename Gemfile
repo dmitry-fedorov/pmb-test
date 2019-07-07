@@ -39,6 +39,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'autoprefixer-rails'
 gem 'devise'
 gem 'foundation-rails'
+gem 'foundation-icons-sass-rails'
 gem 'jquery-rails'
 gem 'slim'
 

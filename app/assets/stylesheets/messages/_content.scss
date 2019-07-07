@@ -81,3 +81,32 @@
   left: 0;
   position: absolute;
 }
+
+.message-actions {
+  position: absolute;
+  width: 100%;
+
+  i.fi-pencil {
+    opacity: 0.2;
+    margin-top: -19px;
+    margin-right: 40px;
+    position: absolute;
+    right: 0;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  i.fi-x {
+    opacity: 0.2;
+    margin-top: -19px;
+    margin-right: 20px;
+    position: absolute;
+    right: 0;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
