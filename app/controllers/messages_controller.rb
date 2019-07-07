@@ -2,6 +2,7 @@
 
 class MessagesController < ApplicationController
   def index
+    session[:id] ||= SecureRandom.urlsafe_base64
     @messages = Message.all
   end
 
