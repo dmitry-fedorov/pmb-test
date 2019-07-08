@@ -20,6 +20,13 @@ class MessagesController < ApplicationController
   end
 
   def destroy
+    @message = Message.find(params[:id])
+    if @message.destroy
+      broadcast_message(@message, :destroy)
+      head :no_content
+    else
+      head :unprocessable_entity
+    end
   end
 
   private
@@ -32,6 +39,7 @@ class MessagesController < ApplicationController
     ActionCable.server.broadcast(
       'messages',
       action: action,
+      id: message.id,
       html: html(message)
     )
   end

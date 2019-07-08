@@ -1,6 +1,7 @@
-.message-item
+.message-item id="message_#{message.id}"
   .message-body
     .message-actions
       i.fi-pencil
-      i.fi-x
+      = link_to message_path(message), method: :delete, remote: true, data: { confirm: 'Are you sure?' } do
+         i.fi-x
     = message.body

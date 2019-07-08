@@ -9,5 +9,4 @@ App.messages = App.cable.subscriptions.create { channel: 'MessagesChannel' },
     console.log('update action method')
 
   destroy: (data) ->
-    console.log('destroy action method')
-
+    $("#message_#{data.id}").remove()
