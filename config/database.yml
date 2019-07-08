@@ -13,9 +13,12 @@ development:
   database: <%= ENV.fetch("DATABASE_NAME", File.basename(Rails.root)) %>_dev
   <<: *default
 
-test:
+test: &test
   database: <%= ENV.fetch("DATABASE_NAME", File.basename(Rails.root)) %>_test
   <<: *default
 
 production:
   <<: *default
+
+cucumber:
+  <<: *test
