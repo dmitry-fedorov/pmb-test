@@ -22,4 +22,12 @@ feature 'Create message', js: true do
     click_on('Create Message')
     expect(page).to_not have_content(message.body)  # ideally should check flash message errors
   end
+
+  scenario 'User clicks on Cancel and does not see message' do
+    fill_in('message_body', with: message.body)
+    click_on('Cancel')
+    page.evaluate_script('window.location.reload()') # We should have separate specs for cable
+    expect(page).to_not have_content(message.body)
+    expect(page).to have_link('Add message')
+  end
 end
