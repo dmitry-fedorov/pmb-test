@@ -52,11 +52,6 @@
   word-break: break-word;
 }
 
-.message-body-form {
-  @extend .message-body;
-  display: none;
-}
-
 .message-form-input {
   margin-bottom: 1rem;
 

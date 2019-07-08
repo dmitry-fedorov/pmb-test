@@ -6,7 +6,7 @@ App.messages = App.cable.subscriptions.create { channel: 'MessagesChannel' },
     $(data.html).insertAfter($('#new_item'))
   
   update: (data) ->
-    console.log('update action method')
+    $("#message_#{data.id}").replaceWith(data.html)
 
   destroy: (data) ->
     $("#message_#{data.id}").remove()

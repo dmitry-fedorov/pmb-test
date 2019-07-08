@@ -6,6 +6,12 @@ class MessagesController < ApplicationController
     @messages = Message.all
   end
 
+  def new
+    @message = Message.new
+
+    respond_to :js
+  end
+
   def create
     @message = Message.new(message_params)
     if @message.save
@@ -16,7 +22,20 @@ class MessagesController < ApplicationController
     end
   end
 
+  def edit
+    @message = Message.find(params[:id])
+
+    respond_to :js
+  end
+
   def update
+    @message = Message.find(params[:id])
+    if @message.update(message_params)
+      broadcast_message(@message, :update)
+      head :ok
+    else
+      head :unprocessable_entity
+    end
   end
 
   def destroy
@@ -32,7 +51,7 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.permit(:body)
+    params.require(:message).permit(:body)
   end
 
   def broadcast_message(message, action)

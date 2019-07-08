@@ -9,23 +9,16 @@ class MessagesManager
 
   _bindEvents: =>
     $(document).on "ajax:success", @ui.addMessageLink, @_hideMessageLink
-    $(document).on "ajax:success", @ui.cancelButton, @_hideForm
-    $(document).on "ajax:success", @ui.form, @_hideForm
+    $(document).on "ajax:success", @ui.cancelButton, @_removeForm
+    $(document).on "ajax:success", @ui.form, @_removeForm
 
   _hideMessageLink: (event) =>
     divAppendTo = $(event.target).closest('div.message-item')
     $(@ui.addMessageLink).closest('div').hide()
-    @_showMessageForm(divAppendTo)
 
-  _showMessageForm: (divAppendTo) =>
-    form = $(divAppendTo).children('div.message-body-form')
-    $(form).show()
-
-  _hideForm: (event) =>
+  _removeForm: (event) =>
     divToShow = $(event.target).closest('div.message-item').children('div.message-body')
-    form = $(event.target).closest('div.message-body-form')
-    form.hide()
-    form.find('textarea').val('')
+    form = $(event.target).closest('div.message-body').remove()
     $(divToShow).show()
 
 new MessagesManager

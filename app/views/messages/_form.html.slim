@@ -1,10 +1,11 @@
-.message-body-form
-  = form_with(model: @message, url: messages_path, data: { behavior: 'form' }, remote: true) do |f|
-    .message-form-input
-      = f.text_area :body, required: true
-        
-    .message-form-cancel
-      = link_to 'Cancel', '#', data: { behavior: 'cancel_button' }, remote: true
- 
-    .message-form-submit
-      = f.submit
+.message-body
+  .message-body-form id="message_form_#{@message&.id}"
+    = form_with(model: @message, url: @message.persisted? ? message_path(@message) : messages_path, data: { behavior: 'form' }) do |f|
+      .message-form-input
+        = f.text_area :body, required: true
+          
+      .message-form-cancel
+        = link_to 'Cancel', '#', data: { behavior: 'cancel_button' }, remote: true
+  
+      .message-form-submit
+        = f.submit
