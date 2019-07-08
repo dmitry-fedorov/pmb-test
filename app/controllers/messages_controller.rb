@@ -24,12 +24,14 @@ class MessagesController < ApplicationController
 
   def edit
     @message = Message.find(params[:id])
+    authorize(@message, :manage?)
 
     respond_to :js
   end
 
   def update
     @message = Message.find(params[:id])
+    authorize(@message, :manage?)
     if @message.update(message_params)
       broadcast_message(@message, :update)
       head :ok
@@ -40,6 +42,7 @@ class MessagesController < ApplicationController
 
   def destroy
     @message = Message.find(params[:id])
+    authorize(@message, :manage?)
     if @message.destroy
       broadcast_message(@message, :destroy)
       head :no_content
