@@ -1,5 +1,5 @@
 .message-body-form
-  = form_with(model: @message, url: messages_path, remote: true) do |f|
+  = form_with(model: @message, url: messages_path, data: { behavior: 'form' }, remote: true) do |f|
     .message-form-input
       = f.text_area :body, required: true
         

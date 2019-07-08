@@ -9,7 +9,7 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(message_params)
     if @message.save
-      # notify channel here
+      broadcast_message(@message, :create)
       head :created
     else
       head :unprocessable_entity
@@ -26,5 +26,20 @@ class MessagesController < ApplicationController
 
   def message_params
     params.permit(:body)
+  end
+
+  def broadcast_message(message, action)
+    ActionCable.server.broadcast(
+      'messages',
+      action: action,
+      html: html(message)
+    )
+  end
+
+  def html(message)
+    ApplicationController.render(
+      partial: 'messages/message',
+      locals: { message: message }
+    )
   end
 end
