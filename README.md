@@ -9,6 +9,7 @@ It will install gems, create database and populate it with some initial messages
 # Rspec
 As rspec uses poltergeist as js driver you may need to install phatnomjs
 - brew cask install phantomjs
+  
 To run tests type
 - bundle exec rspec
 
