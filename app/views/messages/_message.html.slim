@@ -1,8 +1,9 @@
 .message-item id="message_#{message.id}"
   .message-body
-    .message-actions
-      = link_to edit_message_path(message), remote: true do
-        i.fi-pencil id="update_message_#{message.id}"
-      = link_to message_path(message), method: :delete, remote: true, data: { confirm: 'Are you sure?' } do
-         i.fi-x id="destroy_message_#{message.id}"
+    - if MessagePolicy.new(current_user, message).manage?
+      .message-actions
+        = link_to edit_message_path(message), remote: true do
+          i.fi-pencil id="update_message_#{message.id}"
+        = link_to message_path(message), method: :delete, remote: true, data: { confirm: 'Are you sure?' } do
+          i.fi-x id="destroy_message_#{message.id}"
     = message.body
