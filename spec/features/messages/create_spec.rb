@@ -16,6 +16,7 @@ feature 'Create message', js: true do
     page.evaluate_script('window.location.reload()') # We should have separate specs for cable
     expect(page).to have_content(message.body)
     expect(page).to have_link('Add message')
+    expect(page).to have_content('Posted by Anonymous')
   end
 
   scenario 'User do not see message if validation is failed' do
