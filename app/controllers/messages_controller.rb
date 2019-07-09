@@ -16,7 +16,7 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.user = current_user
     if @message.save
-      BroadcastMessage.new(@message, current_user).create
+      BroadcastMessageCommand.new(@message, current_user).create
       head :created
     else
       head :unprocessable_entity
@@ -34,7 +34,7 @@ class MessagesController < ApplicationController
     @message = Message.find(params[:id])
     authorize(@message, :manage?)
     if @message.update(message_params)
-      BroadcastMessage.new(@message, current_user).update
+      BroadcastMessageCommand.new(@message, current_user).update
       head :ok
     else
       head :unprocessable_entity
@@ -45,7 +45,7 @@ class MessagesController < ApplicationController
     @message = Message.find(params[:id])
     authorize(@message, :manage?)
     if @message.destroy
-      BroadcastMessage.new(@message, current_user).destroy
+      BroadcastMessageCommand.new(@message, current_user).destroy
       head :no_content
     else
       head :unprocessable_entity

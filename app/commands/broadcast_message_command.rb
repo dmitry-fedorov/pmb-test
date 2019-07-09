@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class BroadcastMessage
+class BroadcastMessageCommand
   attr_reader :message, :user
 
   MESSAGE_CHANNEL_NAME = 'messages'
