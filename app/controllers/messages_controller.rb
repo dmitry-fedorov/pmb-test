@@ -19,7 +19,7 @@ class MessagesController < ApplicationController
       BroadcastMessageCommand.new(@message, current_user).create
       head :created
     else
-      head :unprocessable_entity
+      render json: { errors: @message.errors.details }, status: :unprocessable_entity
     end
   end
 
@@ -37,19 +37,16 @@ class MessagesController < ApplicationController
       BroadcastMessageCommand.new(@message, current_user).update
       head :ok
     else
-      head :unprocessable_entity
+      render json: { errors: @message.errors.details }, status: :unprocessable_entity
     end
   end
 
   def destroy
     @message = Message.find(params[:id])
     authorize(@message, :manage?)
-    if @message.destroy
-      BroadcastMessageCommand.new(@message, current_user).destroy
-      head :no_content
-    else
-      head :unprocessable_entity
-    end
+    @message.destroy
+    BroadcastMessageCommand.new(@message, current_user).destroy
+    head :no_content
   end
 
   private
