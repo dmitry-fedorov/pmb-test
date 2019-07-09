@@ -8,5 +8,5 @@
 
     = render(@messages)
 
-  = link_to_previous_page(@messages, 'Previous Page', class: 'previous-page')
-  = link_to_next_page(@messages, 'Next Page', class: 'next-page')
+  = link_to_previous_page(@messages, t('previous_page'), class: 'previous-page')
+  = link_to_next_page(@messages, t('next_page'), class: 'next-page')
