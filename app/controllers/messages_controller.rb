@@ -3,7 +3,7 @@
 class MessagesController < ApplicationController
   def index
     session[:id] ||= SecureRandom.urlsafe_base64
-    @messages = Message.all
+    @messages = Message.all.order(created_at: :desc)
   end
 
   def new
@@ -14,6 +14,7 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.new(message_params)
+    @message.user = current_user
     if @message.save
       broadcast_message(@message, :create)
       head :created
@@ -69,7 +70,7 @@ class MessagesController < ApplicationController
   def html(message)
     ApplicationController.render(
       partial: 'messages/message',
-      locals: { message: message }
+      locals: { message: message, current_user: current_user }
     )
   end
 end
