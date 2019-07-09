@@ -44,6 +44,8 @@ gem 'jquery-rails'
 gem 'slim'
 gem 'pundit'
 gem 'kaminari'
+gem "factory_bot_rails"
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -63,8 +65,6 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'poltergeist'
-  gem "factory_bot_rails"
-  gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
   gem 'rspec-rails', '~> 3.5'
   gem 'cucumber-rails', require: false
   gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
