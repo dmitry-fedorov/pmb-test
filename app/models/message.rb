@@ -5,5 +5,5 @@ class Message < ActiveRecord::Base
 
   # I could have used string type which limited by 255, but message length
   # could be increased in the future and changing rails validation is easier
-  validates :body, presence: true, length: { maximum: 200 }
+  validates :body, presence: true, length: { maximum: 100 }
 end

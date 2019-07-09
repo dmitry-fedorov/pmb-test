@@ -42,7 +42,8 @@ gem 'foundation-rails'
 gem 'foundation-icons-sass-rails'
 gem 'jquery-rails'
 gem 'slim'
-gem "pundit"
+gem 'pundit'
+gem 'kaminari'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
