@@ -31,3 +31,13 @@
 
 en:
   board_title: Storytel public message board
+  next_page: Next Page
+  previous_page: Previous Page
+  cancel: Cancel
+  posted_by: Posted by
+  confirm_deletion: Are you sure?
+  add_message: Add message
+  user:
+    sign_in: Sign in
+    sign_up: Sign up
+    sign_out: Sign out

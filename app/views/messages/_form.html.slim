@@ -5,7 +5,7 @@
         = f.text_area :body, required: true
           
       .message-form-cancel
-        = link_to 'Cancel', '#', data: { behavior: 'cancel_button' }, remote: true
+        = link_to t('cancel'), '#', data: { behavior: 'cancel_button' }, remote: true
   
       .message-form-submit
         = f.submit
