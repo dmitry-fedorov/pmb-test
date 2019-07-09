@@ -16,7 +16,7 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.user = current_user
     if @message.save
-      broadcast_message(@message, :create)
+      BroadcastMessage.new(@message, current_user).create
       head :created
     else
       head :unprocessable_entity
@@ -34,7 +34,7 @@ class MessagesController < ApplicationController
     @message = Message.find(params[:id])
     authorize(@message, :manage?)
     if @message.update(message_params)
-      broadcast_message(@message, :update)
+      BroadcastMessage.new(@message, current_user).update
       head :ok
     else
       head :unprocessable_entity
@@ -45,7 +45,7 @@ class MessagesController < ApplicationController
     @message = Message.find(params[:id])
     authorize(@message, :manage?)
     if @message.destroy
-      broadcast_message(@message, :destroy)
+      BroadcastMessage.new(@message, current_user).destroy
       head :no_content
     else
       head :unprocessable_entity
@@ -56,21 +56,5 @@ class MessagesController < ApplicationController
 
   def message_params
     params.require(:message).permit(:body)
-  end
-
-  def broadcast_message(message, action)
-    ActionCable.server.broadcast(
-      'messages',
-      action: action,
-      id: message.id,
-      html: html(message)
-    )
-  end
-
-  def html(message)
-    ApplicationController.render(
-      partial: 'messages/message',
-      locals: { message: message, current_user: current_user }
-    )
   end
 end
